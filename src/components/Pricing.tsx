@@ -3,50 +3,50 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const plans = [
+  // Updated Basic Review
   {
     name: "Basic Review",
     price: "29",
     icon: <Star className="w-6 h-6" />,
-    description: "Perfect for getting started with padel coaching",
+    description: "Targeted improvement for one key technique",
     features: [
       "Full match analysis by a verified coach",
-      "Detailed feedback on your gameplay",
-      "Specific improvement recommendations",
-      "48-hour turnaround time",
+      "Exclusive Technique Playbook for one signature move (e.g. vibora, bandeja, serve-return)",
+      "Level assessment: assign you a level (1–7)",
+      "72-hour turnaround time",
       "One-time payment, no subscription"
     ],
-    cta: "Get Started",
+    cta: "Get Basic Review",
     popular: false
   },
+  // Enhanced Pro Review
   {
     name: "Pro Review",
     price: "49",
     icon: <Zap className="w-6 h-6" />,
-    description: "Most popular choice for serious players",
+    description: "Enhanced feedback with multiple technique guides",
     features: [
       "Everything in Basic Review",
-      "Priority 24-hour turnaround",
+      "Trio Technique Playbooks covering three signature shots of your choice",
+      "48-hour turnaround time",
       "Video annotations and timestamps",
-      "Personalized drill recommendations",
-      "Follow-up Q&A session",
-      "Progress tracking template"
+      "Personalised drill recommendations"
     ],
     cta: "Get Pro Review",
     popular: true
   },
+  // Complete Elite Review
   {
     name: "Elite Review",
     price: "99",
     icon: <Shield className="w-6 h-6" />,
-    description: "Complete analysis package for advanced players",
+    description: "Comprehensive coaching for serious players",
     features: [
       "Everything in Pro Review",
-      "Same-day turnaround",
-      "Multiple match comparison",
-      "Advanced technique breakdown",
-      "Strategy session with coach",
-      "Custom training program",
-      "3-month progress tracking"
+      "Access to a full guide library",
+      "24-hour turnaround time",
+      "Advanced strategy session",
+      "Custom training program"
     ],
     cta: "Get Elite Review",
     popular: false
@@ -81,7 +81,7 @@ const Pricing = () => {
           >
             Select the perfect package for your padel journey.
             <span className="block mt-2 text-blue-600 font-medium">
-              All packages include expert analysis and personalized feedback
+              All packages include expert analysis and personalised feedback
             </span>
           </motion.p>
         </div>
@@ -108,7 +108,7 @@ const Pricing = () => {
                 </div>
               )}
               
-              <div className="p-6">
+              <div className="p-6 flex flex-col h-full">
                 <div className="text-center mb-6">
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 mb-4">
                     {plan.icon}
@@ -129,14 +129,14 @@ const Pricing = () => {
                         className="text-green-500 mt-0.5 mr-3 flex-shrink-0" 
                         aria-hidden="true"
                       />
-                      <span className="text-slate-600">{feature}</span>
+                      <span className="text-slate-600">{feature.replace('personalized', 'personalised')}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Link 
                   to="/submit" 
-                  className={`btn w-full text-center ${
+                  className={`btn w-full mt-auto text-center ${
                     plan.popular 
                       ? 'btn-primary' 
                       : 'bg-slate-800 hover:bg-slate-700 text-white'

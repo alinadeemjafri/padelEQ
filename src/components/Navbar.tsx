@@ -79,7 +79,7 @@ const Navbar = () => {
             {!user ? (
               <>
                 <Link to="/signin" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">Sign In</Link>
-                <Link to="/coach-signup" className="btn btn-outline">Become a Coach</Link>
+                <Link to="/coach" className="btn btn-outline">Become a Coach</Link>
                 <Link to="/signup" className="btn btn-primary">Sign Up</Link>
               </>
             ) : (
