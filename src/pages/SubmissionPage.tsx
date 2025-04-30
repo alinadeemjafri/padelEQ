@@ -111,7 +111,7 @@ const SubmissionPage = () => {
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <MessagesSquare className="w-10 h-10 text-blue-600 mb-3" />
-                  <p>The coach analyzes your match and prepares feedback</p>
+                  <p>The coach analyses your match and prepares feedback</p>
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <ThumbsUp className="w-10 h-10 text-blue-600 mb-3" />

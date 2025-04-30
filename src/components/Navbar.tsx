@@ -73,7 +73,7 @@ const Navbar = () => {
             </>
           )}
           <Link to="/submit" className="btn btn-primary">
-            Analyze My Game
+            Analyse My Game
           </Link>
         </div>
 
@@ -131,9 +131,9 @@ const Navbar = () => {
             )}
             <Link 
               to="/submit" 
-              className="btn btn-primary w-full text-center"
+              className="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700"
             >
-              Analyze My Game
+              Analyse My Game
             </Link>
           </div>
         </div>

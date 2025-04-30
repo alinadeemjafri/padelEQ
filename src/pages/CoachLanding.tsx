@@ -59,7 +59,7 @@ const CoachLanding = () => {
               </div>
               <h3 className="text-xl font-semibold mb-4">Review Matches</h3>
               <p className="text-slate-600">
-                Players submit match footage. You watch and analyze their game when it suits your schedule.
+                Players submit match footage. You watch and analyse their game when it suits your schedule.
               </p>
             </div>
 
