@@ -44,18 +44,21 @@ const CoachesSection = () => {
           </div>
 
           <div className="order-1 lg:order-2">
-            <h2 className="mb-6">Turn Your Expertise Into Income</h2>
+            <h2 className="mb-6 text-3xl font-bold">Turn Your Expertise Into Income</h2>
             <p className="text-slate-600 text-lg mb-8">
               Join PadelEQ's network of elite coaches. Earn consistently by sharing your knowledge with motivated players worldwide. 
               No scheduling headaches, no travel time — just pure coaching.
             </p>
             <div className="space-y-4">
-              <Link to="/coach" className="btn btn-primary w-full sm:w-auto">
-                Start Coaching Today
+              <Link to="/coach" className="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all w-full sm:w-auto relative overflow-hidden group">
+                <span className="relative z-10">Start Coaching Today</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute -right-1 -top-1 w-24 h-24 bg-white opacity-20 rounded-full transform rotate-45 group-hover:scale-150 transition-transform duration-500"></div>
               </Link>
-              <p className="text-sm text-slate-500">
-                Average earnings: £1,000-2,000/month for active coaches
-              </p>
+              <div className="flex items-center justify-center sm:justify-start space-x-2 text-sm text-slate-500">
+                <PiggyBank size={16} className="text-blue-600" />
+                <p>Average earnings: £1,000-2,000/month for active coaches</p>
+              </div>
             </div>
           </div>
         </div>

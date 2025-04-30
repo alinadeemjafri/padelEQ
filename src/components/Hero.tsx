@@ -39,11 +39,13 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Link to="/submit" className="btn btn-primary text-lg px-8 py-4">
-              Analyze My Game
+            <Link to="/coach" className="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all relative overflow-hidden group">
+              <span className="relative z-10">Become a Coach</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute -right-1 -top-1 w-24 h-24 bg-white opacity-20 rounded-full transform rotate-45 group-hover:scale-150 transition-transform duration-500"></div>
             </Link>
-            <Link to="/coach" className="btn bg-slate-800 text-white hover:bg-slate-700 text-lg px-8 py-4">
-              Join as Coach
+            <Link to="/submit" className="btn bg-slate-800 text-white hover:bg-slate-700 text-lg px-8 py-4">
+              Analyse My Game
             </Link>
           </motion.div>
         </div>

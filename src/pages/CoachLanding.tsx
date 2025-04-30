@@ -25,15 +25,17 @@ const CoachLanding = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               Join PadelEQ's network of elite coaches. Share your expertise with players worldwide, 
-              work flexibly, and earn £50-100 per hour analyzing matches.
+              work flexibly, and earn £50-100 per hour analysing matches.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Link to="/coach-signup" className="btn btn-primary text-lg px-8 py-4">
-                Apply as Coach
+              <Link to="/coach-signup" className="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all relative overflow-hidden group">
+                <span className="relative z-10">Apply as Coach</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute -right-1 -top-1 w-24 h-24 bg-white opacity-20 rounded-full transform rotate-45 group-hover:scale-150 transition-transform duration-500"></div>
               </Link>
             </motion.div>
           </div>
@@ -124,8 +126,10 @@ const CoachLanding = () => {
             </div>
 
             <div className="mt-12 text-center">
-              <Link to="/coach-signup" className="btn btn-primary text-lg px-8 py-4">
-                Apply Now
+              <Link to="/coach-signup" className="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all relative overflow-hidden group">
+                <span className="relative z-10">Apply Now</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="absolute -right-1 -top-1 w-24 h-24 bg-white opacity-20 rounded-full transform rotate-45 group-hover:scale-150 transition-transform duration-500"></div>
               </Link>
               <p className="mt-4 text-sm text-slate-500">
                 Applications typically reviewed within 48 hours
