@@ -39,7 +39,6 @@ const PlayersSection = () => {
               Starting at just £29 per match — get elite-level guidance at a fraction of the usual cost.
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {benefits.map((benefit, index) => (
               <div key={index} className="card hover:shadow-md">

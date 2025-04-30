@@ -9,8 +9,8 @@ const benefits = [
   },
   {
     icon: <PiggyBank size={24} className="text-blue-600" />,
-    title: "Earn £50-100/hour",
-    description: "Turn your expertise into substantial earnings. Most reviews take 30-45 minutes."
+    title: "Competitive Pay",
+    description: "Receive competitive pay per review. Most reviews take 30-45 minutes."
   },
   {
     icon: <Sparkles size={24} className="text-blue-600" />,
@@ -55,10 +55,6 @@ const CoachesSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="absolute -right-1 -top-1 w-24 h-24 bg-white opacity-20 rounded-full transform rotate-45 group-hover:scale-150 transition-transform duration-500"></div>
               </Link>
-              <div className="flex items-center justify-center sm:justify-start space-x-2 text-sm text-slate-500">
-                <PiggyBank size={16} className="text-blue-600" />
-                <p>Average earnings: £1,000-2,000/month for active coaches</p>
-              </div>
             </div>
           </div>
         </div>

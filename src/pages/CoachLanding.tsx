@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CalendarClock, PiggyBank, Sparkles, UserCheck, Star, Shield, Globe2 } from 'lucide-react';
+import CoachesSection from '../components/CoachesSection';
 
 const CoachLanding = () => {
   return (
@@ -25,7 +26,7 @@ const CoachLanding = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               Join PadelEQ's network of elite coaches. Share your expertise with players worldwide, 
-              work flexibly, and earn £50-100 per hour analysing matches.
+              work flexibly, and earn competitive rates analyzing matches.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -41,6 +42,9 @@ const CoachLanding = () => {
           </div>
         </div>
       </section>
+
+      {/* CoachesSection as second section */}
+      <CoachesSection />
 
       {/* How It Works */}
       <section className="section bg-white">
@@ -79,7 +83,7 @@ const CoachLanding = () => {
               </div>
               <h3 className="text-xl font-semibold mb-4">Get Paid</h3>
               <p className="text-slate-600">
-                Earn £25-45 per match review. Most reviews take 30-45 minutes to complete.
+                Get paid for your match reviews. Most reviews take 30-45 minutes to complete.
               </p>
             </div>
           </div>
@@ -138,6 +142,7 @@ const CoachLanding = () => {
           </div>
         </div>
       </section>
+
     </div>
   );
 };
