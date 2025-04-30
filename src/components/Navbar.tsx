@@ -28,7 +28,7 @@ const Navbar = () => {
       <div className="container flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <Racquet size={28} className="text-blue-600" />
-          <span className="font-bold text-xl">PadelEQ</span>
+          <span className="font-bold text-xl">PadelEQ TEST</span>
         </Link>
 
         {/* Desktop Navigation */}
