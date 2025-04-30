@@ -72,8 +72,8 @@ const Navbar = () => {
               </Link>
             </>
           )}
-          <Link to="/submit" className="btn btn-primary">
-            Analyse My Game
+          <Link to="/coach" className="btn btn-primary">
+            Become a Coach
           </Link>
         </div>
 
@@ -130,10 +130,10 @@ const Navbar = () => {
               </>
             )}
             <Link 
-              to="/submit" 
+              to="/coach" 
               className="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-slate-700"
             >
-              Analyse My Game
+              Become a Coach
             </Link>
           </div>
         </div>
