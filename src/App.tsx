@@ -5,6 +5,10 @@ import LandingPage from './pages/LandingPage';
 import SubmissionPage from './pages/SubmissionPage';
 import CoachDashboard from './pages/CoachDashboard';
 import CoachLanding from './pages/CoachLanding';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import Cookie from './pages/Cookie';
+import CoachSignup from './pages/CoachSignup';
 
 function App() {
   return (
@@ -16,6 +20,10 @@ function App() {
           <Route path="/submit" element={<SubmissionPage />} />
           <Route path="/coach" element={<CoachLanding />} />
           <Route path="/coach-dashboard" element={<CoachDashboard />} />
+          <Route path="/coach-signup" element={<CoachSignup />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/cookies" element={<Cookie />} />
         </Routes>
       </main>
       <Footer />
