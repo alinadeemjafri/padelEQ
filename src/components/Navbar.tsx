@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Brackets as Racquet } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import PadelRacketIcon from './ui/PadelRacketIcon';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,8 +28,8 @@ const Navbar = () => {
     <nav className="py-4 bg-white shadow-sm sticky top-0 z-50">
       <div className="container flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
-          <Racquet size={28} className="text-blue-600" />
-          <span className="font-bold text-xl">PadelEQ TEST</span>
+          <PadelRacketIcon size={28} color="#2563eb" />
+          <span className="font-bold text-xl">PadelEQ</span>
         </Link>
 
         {/* Desktop Navigation */}
