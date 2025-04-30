@@ -9,6 +9,10 @@ import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Cookie from './pages/Cookie';
 import CoachSignup from './pages/CoachSignup';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import PlayerDashboard from './pages/PlayerDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -17,9 +21,30 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/submit" element={<SubmissionPage />} />
+          <Route
+            path="/submit"
+            element={
+              <ProtectedRoute requiredRole="player">
+                <SubmissionPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/player-dashboard" element={
+            <ProtectedRoute requiredRole="player">
+              <PlayerDashboard />
+            </ProtectedRoute>
+          } />
           <Route path="/coach" element={<CoachLanding />} />
-          <Route path="/coach-dashboard" element={<CoachDashboard />} />
+          <Route
+            path="/coach-dashboard"
+            element={
+              <ProtectedRoute requiredRole="coach">
+                <CoachDashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/coach-signup" element={<CoachSignup />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />

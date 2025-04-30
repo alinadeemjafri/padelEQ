@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import PadelRacketIcon from './ui/PadelRacketIcon';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = () => {
+  const { user, userRole, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -54,56 +56,39 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link 
-            to="/" 
-            className="text-slate-700 hover:text-blue-600 font-medium transition-colors"
-            aria-current={location.pathname === '/' ? 'page' : undefined}
-          >
-            Home
-          </Link>
-          {location.pathname === '/' ? (
-            <>
-              <a 
-                href="#how-it-works" 
-                className="text-slate-700 hover:text-blue-600 font-medium transition-colors"
-                onClick={(e) => handleNavClick(e, 'how-it-works')}
-                aria-label="How It Works section"
-              >
-                How It Works
-              </a>
-              <a 
-                href="#pricing" 
-                className="text-slate-700 hover:text-blue-600 font-medium transition-colors"
-                onClick={(e) => handleNavClick(e, 'pricing')}
-                aria-label="Pricing section"
-              >
-                Pricing
-              </a>
-            </>
-          ) : (
-            <>
-              <Link 
-                to="/#how-it-works" 
-                className="text-slate-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                How It Works
-              </Link>
-              <Link 
-                to="/#pricing" 
-                className="text-slate-700 hover:text-blue-600 font-medium transition-colors"
-              >
-                Pricing
-              </Link>
-            </>
-          )}
-          <Link 
-            to="/coach" 
-            className="btn btn-primary transition-all hover:shadow-lg"
-            aria-label="Become a Coach"
-          >
-            Become a Coach
-          </Link>
+        <div className="hidden md:flex items-center justify-between w-full">
+          {/* Primary nav links */}
+          <div className="flex items-center space-x-8 ml-6">
+            <Link to="/" className="text-slate-700 hover:text-blue-600 font-medium transition-colors" aria-current={location.pathname === '/' ? 'page' : undefined}>
+              Home
+            </Link>
+            {location.pathname === '/' ? (
+              <>
+                <a href="#how-it-works" className="text-slate-700 hover:text-blue-600 hover:underline underline-offset-4 font-medium transition-colors" onClick={(e) => handleNavClick(e, 'how-it-works')}>How It Works</a>
+                <a href="#pricing" className="text-slate-700 hover:text-blue-600 hover:underline underline-offset-4 font-medium transition-colors" onClick={(e) => handleNavClick(e, 'pricing')}>Pricing</a>
+              </>
+            ) : (
+              <>
+                <Link to="/#how-it-works" className="text-slate-700 hover:text-blue-600 hover:underline underline-offset-4 font-medium transition-colors">How It Works</Link>
+                <Link to="/#pricing" className="text-slate-700 hover:text-blue-600 hover:underline underline-offset-4 font-medium transition-colors">Pricing</Link>
+              </>
+            )}
+          </div>
+          {/* CTAs */}
+          <div className="flex items-center space-x-4">
+            {!user ? (
+              <>
+                <Link to="/signin" className="text-slate-700 hover:text-blue-600 font-medium transition-colors">Sign In</Link>
+                <Link to="/coach-signup" className="btn btn-outline">Become a Coach</Link>
+                <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+              </>
+            ) : (
+              <>
+                <Link to={userRole === 'coach' ? '/coach-dashboard' : '/player-dashboard'} className="btn btn-secondary">Dashboard</Link>
+                <button onClick={() => logout()} className="text-slate-700 hover:text-red-600 font-medium transition-colors">Sign Out</button>
+              </>
+            )}
+          </div>
         </div>
 
         {/* Mobile Navigation Toggle */}
@@ -183,6 +168,21 @@ const Navbar = () => {
           >
             Become a Coach
           </Link>
+          {/* Divider before auth links */}
+          <hr className="my-4 border-slate-200" />
+          <div className="flex flex-col space-y-2">
+            {!user ? (
+              <>
+                <Link to="/signin" className="text-slate-700 hover:text-blue-600 font-medium transition-colors py-2" role="menuitem">Sign In</Link>
+                <Link to="/signup" className="text-slate-700 hover:text-blue-600 font-medium transition-colors py-2" role="menuitem">Sign Up</Link>
+              </>
+            ) : (
+              <>
+                <Link to={userRole === 'coach' ? '/coach-dashboard' : '/player-dashboard'} className="text-slate-700 hover:text-blue-600 font-medium transition-colors py-2" role="menuitem">Dashboard</Link>
+                <button onClick={() => logout()} className="text-slate-700 hover:text-red-600 font-medium transition-colors py-2 text-left" role="menuitem">Sign Out</button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </nav>
