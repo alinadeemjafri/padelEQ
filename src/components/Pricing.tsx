@@ -27,7 +27,7 @@ const plans = [
     description: "Enhanced feedback with multiple technique guides",
     features: [
       "Everything in Basic Review",
-      "Trio Technique Playbooks covering three signature shots of your choice",
+      "Three Technique Playbooks covering your three signature shots",
       "48-hour turnaround time",
       "Video annotations and timestamps",
       "Personalised drill recommendations"
@@ -43,7 +43,7 @@ const plans = [
     description: "Comprehensive coaching for serious players",
     features: [
       "Everything in Pro Review",
-      "Access to a full guide library",
+      "Full Suite of Technique Playbooks",
       "24-hour turnaround time",
       "Advanced strategy session",
       "Custom training program"
