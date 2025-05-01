@@ -9,14 +9,16 @@ const SignUp = () => {
   const [error, setError] = useState('');
   const { signup, userRole } = useAuth();
   const navigate = useNavigate();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     try {
       await signup(email, password, role);
-      if (role === 'coach') navigate('/coach-dashboard');
-      else navigate('/player-dashboard');
+      // After registration, redirect to sign-in with a flag
+      navigate('/signin?registered=true');
     } catch (err: any) {
       setError(err.message || 'Failed to sign up');
     }
@@ -61,6 +63,28 @@ const SignUp = () => {
               <option value="player">Player</option>
               <option value="coach">Coach</option>
             </select>
+          </div>
+          <div>
+            <label className="label" htmlFor="firstName">First Name</label>
+            <input
+              id="firstName"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+              className="input w-full"
+            />
+          </div>
+          <div>
+            <label className="label" htmlFor="lastName">Last Name</label>
+            <input
+              id="lastName"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+              className="input w-full"
+            />
           </div>
           <button type="submit" className="btn btn-primary w-full">Sign Up</button>
         </form>

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import PadelRacketIcon from './ui/PadelRacketIcon';
 import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = () => {
   const { user, userRole, logout } = useAuth();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -85,7 +86,12 @@ const Navbar = () => {
             ) : (
               <>
                 <Link to={userRole === 'coach' ? '/coach-dashboard' : '/player-dashboard'} className="btn btn-secondary">Dashboard</Link>
-                <button onClick={() => logout()} className="text-slate-700 hover:text-red-600 font-medium transition-colors">Sign Out</button>
+                <button
+                  onClick={() => logout().then(() => navigate('/'))}
+                  className="text-slate-700 hover:text-red-600 font-medium transition-colors"
+                >
+                  Sign Out
+                </button>
               </>
             )}
           </div>
@@ -179,7 +185,13 @@ const Navbar = () => {
             ) : (
               <>
                 <Link to={userRole === 'coach' ? '/coach-dashboard' : '/player-dashboard'} className="text-slate-700 hover:text-blue-600 font-medium transition-colors py-2" role="menuitem">Dashboard</Link>
-                <button onClick={() => logout()} className="text-slate-700 hover:text-red-600 font-medium transition-colors py-2 text-left" role="menuitem">Sign Out</button>
+                <button
+                  onClick={() => logout().then(() => navigate('/'))}
+                  className="text-slate-700 hover:text-red-600 font-medium transition-colors py-2 text-left"
+                  role="menuitem"
+                >
+                  Sign Out
+                </button>
               </>
             )}
           </div>

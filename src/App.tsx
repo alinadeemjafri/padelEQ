@@ -11,8 +11,9 @@ import Cookie from './pages/Cookie';
 import CoachSignup from './pages/CoachSignup';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import PlayerDashboard from './pages/PlayerDashboard';
+import PlayerDashboard from './pages/PlayerDashboard.tsx';
 import ProtectedRoute from './components/ProtectedRoute';
+import BrowseCoaches from './pages/BrowseCoaches.tsx';
 
 function App() {
   return (
@@ -31,9 +32,10 @@ function App() {
           />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/player-dashboard" element={
+          <Route path="/player-dashboard" element={<PlayerDashboard />} />
+          <Route path="/browse-coaches" element={
             <ProtectedRoute requiredRole="player">
-              <PlayerDashboard />
+              <BrowseCoaches />
             </ProtectedRoute>
           } />
           <Route path="/coach" element={<CoachLanding />} />
