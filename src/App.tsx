@@ -14,6 +14,7 @@ import SignUp from './pages/SignUp';
 import PlayerDashboard from './pages/PlayerDashboard.tsx';
 import ProtectedRoute from './components/ProtectedRoute';
 import BrowseCoaches from './pages/BrowseCoaches.tsx';
+import ChatbotWidget from './components/ChatbotWidget';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <ChatbotWidget />
     </div>
   );
 }
