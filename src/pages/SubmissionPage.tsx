@@ -1,30 +1,80 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckCircle, Video, MessagesSquare, ThumbsUp } from 'lucide-react';
+import { useUserProfile } from '../hooks/useUserProfile';
+import { useMatchSubmission } from '../hooks/useMatchSubmission';
+import { Timestamp } from 'firebase/firestore';
+import { useAuth } from '../contexts/AuthContext';
+import GuestSignupModal from '../components/GuestSignupModal';
 
 const SubmissionPage = () => {
+  const { user } = useAuth();
+  const { fullName, email, loading: profileLoading } = useUserProfile();
+  const { submitNewMatch, loading: submissionLoading, error: submissionError } = useMatchSubmission();
+
   const [formState, setFormState] = useState({
     name: '',
     email: '',
     videoLink: '',
     notes: '',
   });
-
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showGuestModal, setShowGuestModal] = useState(false);
+
+  // Pre-fill for signed-in users
+  useState(() => {
+    if (user) {
+      setFormState((prev) => ({
+        ...prev,
+        name: fullName || '',
+        email: email || '',
+      }));
+    }
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, you would send this data to your backend
-    console.log('Form submitted:', formState);
-    
-    // For demo purposes, we'll just show a success message
-    setIsSubmitted(true);
+    try {
+      const now = Timestamp.now();
+      if (user) {
+        await submitNewMatch({
+          videoUrl: formState.videoLink,
+          notes: formState.notes || undefined,
+          submittedAt: now,
+          lastUpdated: now
+        });
+        setIsSubmitted(true);
+      } else {
+        await submitNewMatch({
+          videoUrl: formState.videoLink,
+          notes: formState.notes || undefined,
+          submittedAt: now,
+          lastUpdated: now,
+          guestEmail: formState.email,
+          guestName: formState.name,
+        });
+        setIsSubmitted(true);
+        setShowGuestModal(true);
+      }
+    } catch (err) {
+      console.error('Error submitting match:', err);
+    }
   };
+
+  if (profileLoading) {
+    return (
+      <div className="py-12">
+        <div className="container max-w-4xl">
+          <div className="text-center">Loading...</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-12 md:py-20">
@@ -38,6 +88,12 @@ const SubmissionPage = () => {
 
         {!isSubmitted ? (
           <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
+            {submissionError && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded">
+                {submissionError}
+              </div>
+            )}
+            
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <label htmlFor="name" className="label">Your Name</label>
@@ -45,11 +101,13 @@ const SubmissionPage = () => {
                   type="text" 
                   id="name" 
                   name="name" 
-                  className="input"
+                  className="input bg-slate-50"
                   value={formState.name}
                   onChange={handleChange}
                   required
-                  placeholder="Enter your full name"
+                  disabled={!!user}
+                  readOnly={!!user}
+                  placeholder="Enter your name"
                 />
               </div>
 
@@ -59,10 +117,12 @@ const SubmissionPage = () => {
                   type="email" 
                   id="email" 
                   name="email" 
-                  className="input"
+                  className="input bg-slate-50"
                   value={formState.email}
                   onChange={handleChange}
                   required
+                  disabled={!!user}
+                  readOnly={!!user}
                   placeholder="your@email.com"
                 />
               </div>
@@ -97,8 +157,12 @@ const SubmissionPage = () => {
                 ></textarea>
               </div>
 
-              <button type="submit" className="btn btn-primary w-full">
-                Submit Match for Review
+              <button 
+                type="submit" 
+                className="btn btn-primary w-full"
+                disabled={submissionLoading}
+              >
+                {submissionLoading ? 'Submitting...' : 'Submit Match for Review'}
               </button>
             </form>
 
@@ -137,6 +201,7 @@ const SubmissionPage = () => {
             <Link to="/" className="btn btn-primary">
               Return to Home
             </Link>
+            {showGuestModal && <GuestSignupModal email={formState.email} onClose={() => setShowGuestModal(false)} />}
           </div>
         )}
       </div>

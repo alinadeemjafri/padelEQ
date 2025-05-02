@@ -15,16 +15,30 @@ const SignIn = () => {
     e.preventDefault();
     setError('');
     try {
-      await login(email, password);
-      navigate('/player-dashboard');
+      const role = await login(email, password);
+      console.log('Login successful, role:', role); // Debug log
+      
+      // Immediate navigation based on role
+      if (role === 'coach') {
+        navigate('/coach-dashboard');
+      } else if (role === 'player') {
+        navigate('/player-dashboard');
+      }
     } catch (err: any) {
       setError(err.message || 'Failed to sign in');
     }
   };
 
+  // Keep the useEffect for handling initial load and auth state changes
   useEffect(() => {
-    if (user && userRole === 'coach') navigate('/coach-dashboard');
-    else if (user && userRole === 'player') navigate('/player-dashboard');
+    if (!user || !userRole) return;
+    
+    console.log('Auth state change navigation, role:', userRole);
+    if (userRole === 'coach') {
+      navigate('/coach-dashboard');
+    } else if (userRole === 'player') {
+      navigate('/player-dashboard');
+    }
   }, [user, userRole, navigate]);
 
   return (
