@@ -14,7 +14,6 @@ import SignUp from './pages/SignUp';
 import PlayerDashboard from './pages/PlayerDashboard.tsx';
 import ProtectedRoute from './components/ProtectedRoute';
 import BrowseCoaches from './pages/BrowseCoaches.tsx';
-import ChatbotWidget from './components/ChatbotWidget';
 
 function App() {
   return (
@@ -23,22 +22,11 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/submit"
-            element={
-              <ProtectedRoute requiredRole="player">
-                <SubmissionPage />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/submit" element={<SubmissionPage />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/player-dashboard" element={<PlayerDashboard />} />
-          <Route path="/browse-coaches" element={
-            <ProtectedRoute requiredRole="player">
-              <BrowseCoaches />
-            </ProtectedRoute>
-          } />
+          <Route path="/browse-coaches" element={<BrowseCoaches />} />
           <Route path="/coach" element={<CoachLanding />} />
           <Route
             path="/coach-dashboard"
@@ -55,7 +43,6 @@ function App() {
         </Routes>
       </main>
       <Footer />
-      <ChatbotWidget />
     </div>
   );
 }
