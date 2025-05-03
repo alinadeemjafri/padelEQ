@@ -2,21 +2,18 @@ import WaitlistForm from '../components/WaitlistForm';
 import Hero from '../components/Hero';
 import HowItWorks from '../components/HowItWorks';
 import PlayersSection from '../components/PlayersSection';
-import Testimonials from '../components/Testimonials';
-import Pricing from '../components/Pricing';
+// import Testimonials from '../components/Testimonials';
+// import Pricing from '../components/Pricing';
 import FAQ from '../components/FAQ';
 
 const LandingPage = () => {
   return (
     <div>
-      <div className="py-12 bg-gradient-to-b from-blue-50 to-white">
-        <WaitlistForm />
-      </div>
       <Hero />
       <HowItWorks />
       <PlayersSection />
-      <Testimonials />
-      <Pricing />
+      {/* <Testimonials /> */}
+      {/* <Pricing /> */}
       <FAQ />
     </div>
   );

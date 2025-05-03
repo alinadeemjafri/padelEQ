@@ -2,17 +2,26 @@ import { useState } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 
+const paymentOptions = [
+  '£5–10 per match/month',
+  '£10–20 per match/month',
+  '£20–30 per match/month',
+  '£30+ per match/month',
+  'Not sure yet',
+];
+
 const WaitlistForm = () => {
   const [form, setForm] = useState({
     name: '',
     email: '',
     note: '',
+    willingToPay: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
@@ -20,8 +29,8 @@ const WaitlistForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (!form.name.trim() || !form.email.trim()) {
-      setError('Please enter your name and email.');
+    if (!form.name.trim() || !form.email.trim() || !form.willingToPay) {
+      setError('Please enter your name, email, and select how much you would be willing to pay.');
       return;
     }
     setLoading(true);
@@ -30,6 +39,7 @@ const WaitlistForm = () => {
         name: form.name.trim(),
         email: form.email.trim().toLowerCase(),
         note: form.note.trim(),
+        willingToPay: form.willingToPay,
         createdAt: Timestamp.now(),
       });
       setSuccess(true);
@@ -60,7 +70,7 @@ const WaitlistForm = () => {
           id="name"
           name="name"
           type="text"
-          className="input w-full"
+          className="input w-full text-slate-900"
           value={form.name}
           onChange={handleChange}
           required
@@ -74,7 +84,7 @@ const WaitlistForm = () => {
           id="email"
           name="email"
           type="email"
-          className="input w-full"
+          className="input w-full text-slate-900"
           value={form.email}
           onChange={handleChange}
           required
@@ -83,11 +93,28 @@ const WaitlistForm = () => {
         />
       </div>
       <div>
+        <label htmlFor="willingToPay" className="label">How much would you be willing to pay for a service like this (per month or per match)? <span className="text-red-500">*</span></label>
+        <select
+          id="willingToPay"
+          name="willingToPay"
+          className="input w-full text-slate-900"
+          value={form.willingToPay}
+          onChange={handleChange}
+          required
+          disabled={loading}
+        >
+          <option value="" disabled>Select an option</option>
+          {paymentOptions.map((option) => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+      </div>
+      <div>
         <label htmlFor="note" className="label">Describe your ideal experience with a service like this. What would make it perfect for you? <span className="text-slate-400 font-normal">(Optional)</span></label>
         <textarea
           id="note"
           name="note"
-          className="input w-full"
+          className="input w-full text-slate-900"
           rows={4}
           value={form.note}
           onChange={handleChange}

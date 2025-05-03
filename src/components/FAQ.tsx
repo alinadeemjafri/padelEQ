@@ -20,27 +20,27 @@ const faqs = [
   },
   {
     question: "What format is the feedback provided in?",
-    answer: "You'll receive a comprehensive written report with video timestamps, highlighting key moments and specific examples. The feedback includes a detailed breakdown of your performance, prioritized improvement areas, and actionable recommendations. For Pro and Elite packages, you'll also get video annotations and follow-up support.",
+    answer: "You'll receive a comprehensive written report with video timestamps, highlighting key moments and specific examples. The feedback includes a detailed breakdown of your performance, prioritized improvement areas, and actionable recommendations.",
     category: "feedback"
   },
   {
     question: "How long does it take to receive my analysis?",
-    answer: "Standard analysis is delivered within 48 hours. Pro package subscribers receive priority 24-hour turnaround, while Elite package subscribers get same-day analysis. All packages include detailed, personalized feedback regardless of turnaround time.",
+    answer: "Standard analysis is delivered within 48 hours. You'll receive detailed, personalized feedback regardless of turnaround time.",
     category: "timing"
   },
   {
     question: "Can I get analysis for multiple matches?",
-    answer: "Yes! While each analysis is purchased individually, our Elite package includes multiple match comparison and a custom training program. This allows for tracking progress over time and identifying patterns in your gameplay.",
-    category: "packages"
+    answer: "Yes! You can submit as many matches as you like. This allows for tracking progress over time and identifying patterns in your gameplay.",
+    category: "matches"
   },
   {
     question: "What if I'm not satisfied with the feedback?",
-    answer: "We stand behind the quality of our analysis with a 100% satisfaction guarantee. If you're not completely satisfied with your feedback, contact our support team within 7 days of receiving your analysis, and we'll work with you to address your concerns or provide a complimentary review.",
+    answer: "We stand behind the quality of our analysis with a satisfaction guarantee. If you're not completely satisfied with your feedback, contact our support team within 7 days of receiving your analysis, and we'll work with you to address your concerns or provide a complimentary review.",
     category: "support"
   },
   {
     question: "Do you offer ongoing coaching or just one-time analysis?",
-    answer: "While our core service is match analysis, our Pro and Elite packages include follow-up support and progress tracking. We're also developing additional coaching services, including ongoing mentorship and group training programs.",
+    answer: "While our core service is match analysis, we're also developing additional coaching services, including ongoing mentorship and group training programs.",
     category: "services"
   }
 ];

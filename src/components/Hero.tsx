@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import WaitlistForm from './WaitlistForm';
 
 const Hero = () => {
+  const [showWaitlist, setShowWaitlist] = useState(false);
   return (
     <section 
       className="relative overflow-hidden bg-slate-900 text-white"
@@ -50,13 +53,13 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Link 
-              to="/submit" 
+            <button
               className="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all rounded-lg font-semibold"
-              aria-label="Submit your game footage for analysis"
+              onClick={() => setShowWaitlist(true)}
+              aria-label="Join the waitlist"
             >
               <span className="flex items-center justify-center gap-2">
-                Analyse My Game
+                Join the Waitlist
                 <svg 
                   className="w-5 h-5" 
                   fill="none" 
@@ -72,14 +75,7 @@ const Hero = () => {
                   />
                 </svg>
               </span>
-            </Link>
-            <Link 
-              to="/coach" 
-              className="btn bg-slate-800 text-white hover:bg-slate-700 text-base px-6 py-3 rounded-lg font-medium border border-slate-700 hover:border-slate-600 transition-all"
-              aria-label="Join our coaching platform"
-            >
-              Become a Coach
-            </Link>
+            </button>
           </motion.div>
 
           {/* Trust Indicators */}
@@ -137,6 +133,22 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Waitlist Modal */}
+      {showWaitlist && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="relative z-60 max-w-lg w-full mx-auto">
+            <button
+              className="absolute top-2 right-2 text-3xl text-slate-400 hover:text-slate-600"
+              onClick={() => setShowWaitlist(false)}
+              aria-label="Close waitlist form"
+            >
+              &times;
+            </button>
+            <WaitlistForm />
+          </div>
+        </div>
+      )}
 
       {/* Bottom Wave */}
       <div 
