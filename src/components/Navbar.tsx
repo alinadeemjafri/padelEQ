@@ -10,11 +10,6 @@ const Navbar = () => {
           Padel<span style={{ color: '#043CDA' }}>EQ</span>
         </span>
       </Link>
-      <div className="flex gap-6 items-center">
-        <Link to="/privacy" className="text-slate-600 hover:text-blue-700 transition">Privacy</Link>
-        <Link to="/terms" className="text-slate-600 hover:text-blue-700 transition">Terms</Link>
-        <Link to="/cookies" className="text-slate-600 hover:text-blue-700 transition">Cookies</Link>
-      </div>
     </nav>
   );
 };

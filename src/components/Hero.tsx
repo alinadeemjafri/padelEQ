@@ -1,10 +1,19 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import WaitlistForm from './WaitlistForm';
 
-const Hero = () => {
-  const [showWaitlist, setShowWaitlist] = useState(false);
+interface HeroProps {
+  showWaitlist: boolean;
+  setShowWaitlist: (show: boolean) => void;
+}
+
+const Hero = ({ setShowWaitlist }: HeroProps) => {
+  const scrollToValueProposition = () => {
+    const element = document.getElementById('value-proposition');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section 
       className="relative overflow-hidden bg-slate-900 text-white"
@@ -25,7 +34,18 @@ const Hero = () => {
       </div>
 
       <div className="container relative z-10 pt-20 pb-24 md:pt-28 md:pb-32">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Urgency Badge */}
+          <motion.div 
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="animate-pulse">⚡</span>
+            <span>Limited Time: Save 20% on Your First Match Review</span>
+          </motion.div>
+
           <motion.h1 
             id="hero-heading"
             className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
@@ -33,22 +53,39 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="block">Smarter Padel Coaching.</span>
-            <span className="block text-blue-400">One Match at a Time.</span>
+            <span className="block">Elite-Level Padel Coaching</span>
+            <span className="block text-blue-400">Without Leaving the Court</span>
           </motion.h1>
 
           <motion.p 
-            className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto"
+            className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Get personalized feedback from expert coaches by submitting your game footage. 
-            <span className="block mt-2 font-medium">No in-person sessions needed. Start improving today.</span>
+            Get personalized match feedback from expert coaches in 48 hours. 
+            <span className="block mt-2 font-medium text-white">Starting at just £29 per match.</span>
           </motion.p>
 
+          {/* Price and Value Proposition */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-8 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <span className="text-3xl font-bold text-blue-400">£29</span>
+              <span className="text-slate-300">per match review</span>
+              <span className="bg-blue-500 text-white px-2 py-1 rounded text-sm font-semibold">Save 20%</span>
+            </div>
+            <p className="text-blue-100 text-sm">
+              ✓ 48-hour turnaround • ✓ Expert coaches • ✓ Detailed video analysis • ✓ Actionable feedback
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
@@ -56,10 +93,10 @@ const Hero = () => {
             <button
               className="btn bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all rounded-lg font-semibold"
               onClick={() => setShowWaitlist(true)}
-              aria-label="Join the waitlist"
+              aria-label="Get your first match reviewed"
             >
               <span className="flex items-center justify-center gap-2">
-                Join the Waitlist
+                Get Your First Match Reviewed – Save 20% Today
                 <svg 
                   className="w-5 h-5" 
                   fill="none" 
@@ -75,6 +112,13 @@ const Hero = () => {
                   />
                 </svg>
               </span>
+            </button>
+            <button
+              className="btn bg-transparent border-2 border-white/30 hover:border-white/50 text-white text-lg px-8 py-4 transition-all rounded-lg font-semibold"
+              onClick={scrollToValueProposition}
+              aria-label="See how it works"
+            >
+              See How It Works
             </button>
           </motion.div>
 
@@ -113,7 +157,7 @@ const Hero = () => {
                   clipRule="evenodd" 
                 />
               </svg>
-              <span>24/7 Support</span>
+              <span>48-Hour Turnaround</span>
             </div>
             <div className="flex items-center gap-2">
               <svg 
@@ -128,27 +172,11 @@ const Hero = () => {
                   clipRule="evenodd" 
                 />
               </svg>
-              <span>Secure Platform</span>
+              <span>Money-Back Guarantee</span>
             </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Waitlist Modal */}
-      {showWaitlist && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="relative z-60 max-w-lg w-full mx-auto">
-            <button
-              className="absolute top-2 right-2 text-3xl text-slate-400 hover:text-slate-600"
-              onClick={() => setShowWaitlist(false)}
-              aria-label="Close waitlist form"
-            >
-              &times;
-            </button>
-            <WaitlistForm />
-          </div>
-        </div>
-      )}
 
       {/* Bottom Wave */}
       <div 

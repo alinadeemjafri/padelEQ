@@ -1,214 +1,160 @@
-import { Check, Star, Zap, Shield } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Check, Star, Clock, Users, Target } from 'lucide-react';
 
-const plans = [
-  // Updated Basic Review
-  {
-    name: "Basic Review",
-    price: "29",
-    icon: <Star className="w-6 h-6" />,
-    description: "Targeted improvement for one key technique",
-    features: [
-      "Full match analysis by a verified coach",
-      "Exclusive Technique Playbook for one signature move (e.g. vibora, bandeja, serve-return)",
-      "Level assessment: assign you a level (1–7)",
-      "72-hour turnaround time",
-      "One-time payment, no subscription"
-    ],
-    cta: "Get Basic Review",
-    popular: false
-  },
-  // Enhanced Pro Review
-  {
-    name: "Pro Review",
-    price: "49",
-    icon: <Zap className="w-6 h-6" />,
-    description: "Enhanced feedback with multiple technique guides",
-    features: [
-      "Everything in Basic Review",
-      "Three Technique Playbooks covering your three signature shots",
-      "48-hour turnaround time",
-      "Video annotations and timestamps",
-      "Personalised drill recommendations"
-    ],
-    cta: "Get Pro Review",
-    popular: true
-  },
-  // Complete Elite Review
-  {
-    name: "Elite Review",
-    price: "99",
-    icon: <Shield className="w-6 h-6" />,
-    description: "Comprehensive coaching for serious players",
-    features: [
-      "Everything in Pro Review",
-      "Full Suite of Technique Playbooks",
-      "24-hour turnaround time",
-      "Advanced strategy session",
-      "Custom training program"
-    ],
-    cta: "Get Elite Review",
-    popular: false
-  }
-];
+interface PricingProps {
+  setShowWaitlist: (show: boolean) => void;
+}
 
-const Pricing = () => {
+const Pricing = ({ setShowWaitlist }: PricingProps) => {
+  const scrollToVisualDemo = () => {
+    const element = document.getElementById('visual-demo');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section 
-      id="pricing" 
-      className="section bg-slate-50 py-20"
-      aria-labelledby="pricing-heading"
-    >
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <motion.h2 
-            id="pricing-heading"
-            className="text-3xl md:text-4xl font-bold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Choose Your Review Package
-          </motion.h2>
-          <motion.p 
-            className="text-slate-600 text-lg"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            Select the perfect package for your padel journey.
-            <span className="block mt-2 text-blue-600 font-medium">
-              All packages include expert analysis and personalised feedback
-            </span>
-          </motion.p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {plans.map((plan, index) => (
-            <motion.div 
-              key={plan.name}
-              className={`card bg-white relative ${
-                plan.popular 
-                  ? 'md:scale-105 shadow-xl border-2 border-blue-500' 
-                  : 'shadow-md'
-              }`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="inline-block bg-blue-600 text-white text-sm font-medium px-4 py-1 rounded-full">
-                    Most Popular
-                  </span>
-                </div>
-              )}
-              
-              <div className="p-6 flex flex-col h-full">
-                <div className="text-center mb-6">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 mb-4">
-                    {plan.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                  <p className="text-slate-600 mb-4">{plan.description}</p>
-                  <div className="mb-6">
-                    <span className="text-5xl font-bold">£{plan.price}</span>
-                    <span className="text-slate-500"> / match</span>
-                  </div>
-                </div>
-
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start">
-                      <Check 
-                        size={20} 
-                        className="text-green-500 mt-0.5 mr-3 flex-shrink-0" 
-                        aria-hidden="true"
-                      />
-                      <span className="text-slate-600">{feature.replace('personalized', 'personalised')}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link 
-                  to="/submit" 
-                  className={`btn w-full mt-auto text-center ${
-                    plan.popular 
-                      ? 'btn-primary' 
-                      : 'bg-slate-800 hover:bg-slate-700 text-white'
-                  }`}
-                  aria-label={`Get started with ${plan.name}`}
-                >
-                  {plan.cta}
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Trust Indicators */}
         <motion.div 
-          className="mt-16 text-center"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <p className="text-slate-600 mb-4">
-            Trusted by padel players worldwide
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            Simple, Transparent Pricing
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            No hidden fees, no subscriptions. Pay only for what you need.
           </p>
-          <div className="flex flex-wrap justify-center gap-8 items-center text-slate-400">
-            <div className="flex items-center gap-2">
-              <svg 
-                className="w-5 h-5 text-blue-400" 
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                  clipRule="evenodd" 
-                />
-              </svg>
-              <span>100% Satisfaction Guarantee</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg 
-                className="w-5 h-5 text-blue-400" 
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                  clipRule="evenodd" 
-                />
-              </svg>
-              <span>Expert Coaches</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg 
-                className="w-5 h-5 text-blue-400" 
-                fill="currentColor" 
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path 
-                  fillRule="evenodd" 
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                  clipRule="evenodd" 
-                />
-              </svg>
-              <span>Secure Payment</span>
-            </div>
-          </div>
         </motion.div>
+
+        <div className="max-w-4xl mx-auto">
+          {/* Main Pricing Card */}
+          <motion.div 
+            className="relative bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-white text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            {/* Urgency Badge */}
+            <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+              <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
+                ⚡ Limited Time: Save 20%
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold mb-4">Single Match Review</h3>
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <span className="text-5xl font-bold">£29</span>
+                <div className="text-left">
+                  <span className="line-through text-blue-200">£36</span>
+                  <div className="text-sm text-blue-200">per match</div>
+                </div>
+              </div>
+              <p className="text-blue-100">Perfect for trying out our service or getting feedback on a specific match</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6 mb-8">
+              <div className="flex items-center gap-3">
+                <Clock className="w-5 h-5 text-blue-200" />
+                <span className="text-sm">48-hour turnaround</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Users className="w-5 h-5 text-blue-200" />
+                <span className="text-sm">Expert coach analysis</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Target className="w-5 h-5 text-blue-200" />
+                <span className="text-sm">Actionable feedback</span>
+              </div>
+            </div>
+
+            <button 
+              className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors text-lg"
+              onClick={() => setShowWaitlist(true)}
+            >
+              Get Your First Match Reviewed – £29
+            </button>
+          </motion.div>
+
+          {/* Value Comparison */}
+          <motion.div 
+            className="mt-12 grid md:grid-cols-3 gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center p-6 bg-slate-50 rounded-xl">
+              <div className="text-3xl font-bold text-slate-900 mb-2">£100-200</div>
+              <div className="text-slate-600 mb-4">Traditional Coaching</div>
+              <ul className="text-sm text-slate-600 space-y-2">
+                <li>• 1-hour session</li>
+                <li>• Travel required</li>
+                <li>• Limited availability</li>
+                <li>• No video analysis</li>
+              </ul>
+            </div>
+
+            <div className="text-center p-6 bg-blue-50 rounded-xl border-2 border-blue-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">£29</div>
+              <div className="text-blue-600 font-semibold mb-4">PadelEQ Analysis</div>
+              <ul className="text-sm text-slate-600 space-y-2">
+                <li>• Comprehensive review</li>
+                <li>• Video timestamps</li>
+                <li>• 48-hour delivery</li>
+                <li>• Expert coaches</li>
+              </ul>
+            </div>
+
+            <div className="text-center p-6 bg-slate-50 rounded-xl">
+              <div className="text-3xl font-bold text-slate-900 mb-2">£0</div>
+              <div className="text-slate-600 mb-4">Friend's Feedback</div>
+              <ul className="text-sm text-slate-600 space-y-2">
+                <li>• Inconsistent advice</li>
+                <li>• Limited expertise</li>
+                <li>• No structure</li>
+                <li>• Subjective opinions</li>
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Additional CTA */}
+          <motion.div 
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 text-white">
+              <h3 className="text-2xl font-bold mb-4">Ready to Transform Your Game?</h3>
+              <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+                Join hundreds of players who've already improved with expert analysis. 
+                Start with just one match review for £29.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+                  onClick={() => setShowWaitlist(true)}
+                >
+                  Get Started – £29
+                </button>
+                <button 
+                  className="border-2 border-white/30 text-white px-8 py-3 rounded-lg font-semibold hover:border-white/50 transition-colors"
+                  onClick={scrollToVisualDemo}
+                >
+                  See Sample Analysis
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
