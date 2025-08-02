@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import Cookie from './pages/Cookie';
+import CoachFeedbackForm from './pages/CoachFeedbackForm';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/cookies" element={<Cookie />} />
+          <Route path="/coach-feedback" element={<CoachFeedbackForm />} />
         </Routes>
       </main>
       <Footer />
